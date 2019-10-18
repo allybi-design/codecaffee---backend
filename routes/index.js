@@ -46,4 +46,16 @@ router.post("/postOrder", (req, res) => {
   });
 });
 
+router.delete("/delOrder/:id", (req, res) => {
+  console.log(req.params.id)
+  
+  const sql = "DELETE FROM cartDB WHERE orderId="+req.params.id;
+  con.query(sql, (err, result)=> {
+     if (err) throw err;
+     console.log(`${result} - data inserted`);
+     res.status(200).send("DELETED");
+  })
+  
+})
+
 module.exports = router;
